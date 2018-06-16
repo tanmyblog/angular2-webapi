@@ -1,10 +1,16 @@
+import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductComponent } from './product.component';
 
+const productRoutes : Routes = [
+  {path: '', redirectTo: 'index', pathMatch: 'full'},
+  {path: 'index', component: ProductComponent}
+]
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(productRoutes)
   ],
   declarations: [ProductComponent]
 })
