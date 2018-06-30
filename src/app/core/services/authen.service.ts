@@ -3,7 +3,7 @@ import { SystemConstants } from './../common/system.constants';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 
-import 'rxjs/operator/map';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +20,14 @@ export class AuthenService {
     headers.append("Content-type", "application/x-www-form-urlencoded");
     let options = new RequestOptions({ headers: headers });
 
-    return this._http.post(SystemConstants.BASE_API + '/api/oauth/token', body, options).map((response: Response) =>{
+    return this._http.post(SystemConstants.BASE_API + '/api/oauth/token', body, options).pipe(map((response: Response) => {
       let user: LoggedInUser = response.json();
       if(user && user.access_token)
       {
         localStorage.removeItem(SystemConstants.CURRENT_USER);
         localStorage.setItem(SystemConstants.CURRENT_USER, JSON.stringify(user));
       }
-    });
+    }));
   }
   logout() {
     localStorage.removeItem(SystemConstants.CURRENT_USER);
