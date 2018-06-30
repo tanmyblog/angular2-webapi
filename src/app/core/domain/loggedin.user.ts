@@ -4,13 +4,13 @@ export class LoggedInUser {
     public username: string;
     public fullname: string;
     public email: string;
-    public avartar: string;
+    public avatar: string;
 
-    constructor(access_token: string, username: string, fullname: string, email: string, avartar: string) {
+    constructor(access_token: string, username: string, fullname: string, email: string, avatar: string) {
         this.access_token = access_token;
         this.username = username;
         this.fullname = fullname;
         this.email = email;
-        this.avartar = avartar;
+        this.avatar = avatar;
     }
 }
