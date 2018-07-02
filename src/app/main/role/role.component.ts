@@ -1,3 +1,4 @@
+import { Response } from '@angular/http';
 import { MessageConstants } from './../../core/common/message.constants';
 import { DataService } from './../../core/services/data.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -61,6 +62,7 @@ export class RoleComponent implements OnInit {
     this.modalAddEdit.show();
   }
 
+  /* Insert and Update Role */
   saveChange(valid: boolean) {
     if (valid) {
       if (this.entity.Id == undefined) {
@@ -77,5 +79,17 @@ export class RoleComponent implements OnInit {
         }, error => this._dataService.handleError(error));
       }
     }
+  }
+
+  /* Delete Role */
+  deleteItem(id: any) {
+    this._notificationService.printConfirmationDialog(MessageConstants.CONFIRM_DELETE_MSG, () => this.deleteConfirm(id));
+  }
+
+  deleteConfirm(id: any) {
+    this._dataService.delete('/api/appRole/delete', 'id', id).subscribe((response: Response) => {
+      this._notificationService.printSuccessMessage(MessageConstants.DELETED_OK_MSG);
+      this.loadData();
+    });
   }
 }
