@@ -5,9 +5,9 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    PaginationModule.forRoot()
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

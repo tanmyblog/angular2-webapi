@@ -1,3 +1,5 @@
+import { FormsModule } from '@angular/forms';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { DataService } from './../../core/services/data.service';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -13,6 +15,8 @@ const roleRoutes : Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    PaginationModule,
+    FormsModule,
     RouterModule.forChild(roleRoutes)
   ],
   providers: [DataService, NotificationService],
