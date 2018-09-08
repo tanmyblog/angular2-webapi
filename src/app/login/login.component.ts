@@ -1,3 +1,4 @@
+import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UrlConstants } from './../core/common/url.constants';
 import { MessageConstants } from './../core/common/message.constants';
@@ -27,9 +28,9 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loading = true;
-    this.authenService.login(this.model.username, this.model.password).subscribe(data => {
+    this.authenService.login(this.model.username, this.model.password).then(data => {
       this.router.navigate([UrlConstants.HOME]);
-    }, error => {
+    }).catch(error => {
       this.notificationService.printErrorMessage(MessageConstants.SYSTEM_ERROR_MSG);
       this.loading = false;
     });
